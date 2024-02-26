@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34601.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bordro_Gonder", "Bordro_Gonder.csproj", "{8CAD366D-8E02-4EDE-A826-CB3A99D9DF17}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CAD366D-8E02-4EDE-A826-CB3A99D9DF17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CAD366D-8E02-4EDE-A826-CB3A99D9DF17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CAD366D-8E02-4EDE-A826-CB3A99D9DF17}.Debug|x86.ActiveCfg = Debug|x86
+		{8CAD366D-8E02-4EDE-A826-CB3A99D9DF17}.Debug|x86.Build.0 = Debug|x86
+		{8CAD366D-8E02-4EDE-A826-CB3A99D9DF17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CAD366D-8E02-4EDE-A826-CB3A99D9DF17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CAD366D-8E02-4EDE-A826-CB3A99D9DF17}.Release|x86.ActiveCfg = Release|x86
+		{8CAD366D-8E02-4EDE-A826-CB3A99D9DF17}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA3F9F14-26D6-4C7D-8A66-CE0B614B7C94}
+	EndGlobalSection
+EndGlobal

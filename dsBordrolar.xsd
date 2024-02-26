@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsBordrolar" targetNamespace="http://tempuri.org/dsBordrolar.xsd" xmlns:mstns="http://tempuri.org/dsBordrolar.xsd" xmlns="http://tempuri.org/dsBordrolar.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="EmailAdresKontrolu" GeneratorFunctionsComponentClassName="EmailAdresKontrolu" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="EmailAdresKontrolu" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="DbConn" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DbConn (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Bordro_Gonder.Properties.Settings.GlobalReference.Default.DbConn" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="DbHata" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DbHata (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Bordro_Gonder.Properties.Settings.GlobalReference.Default.DbHata" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="BordlariGetirTableAdapter" GeneratorDataComponentClassName="BordlariGetirTableAdapter" Name="BordlariGetir" UserDataComponentName="BordlariGetirTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DbConn (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Bordrolar" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Bordrolar" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Bordrolar">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT (SELECT PER006_ReferansAciklamasi 
+FROM PER006 WITH(NOLOCK) 
+WHERE PER006_ReferansTuru = 005 AND PER006_ReferansKodu=(SELECT PER002_GorevKodu FROM PER002
+WHERE PER002_SicilKodu=PER003_SicilKodu)) AS IscıMemur,(CAST('1' as bit)) AS 'Sec',PER003_BolumKodu+'/'+PER003_SicilKodu AS BlSicil,P2.PER002_Adi+' ' +P2.PER002_Soyadi AS AdSoyad,P3.PER003_Ucreti AS Ucret,
+CONVERT(varchar(10),CONVERT(datetime,P2.PER002_GirisTarihi-2),103) AS GirisTarihi,P2.PER002_MernisNo AS TcNo,P2.PER002_Eposta AS Email,
+P2.PER002_SSKSicilNo AS SGKNo,P2.PER002_CocukAdedi AS CocukAdedi,P3.PER003_NormalSSKGun AS SgkGun,P3.PER003_GunNo AS NormalCalisma,
+P3.PER003_GunHt AS HaftaTatili,P3.PER003_GunGn AS GenelTatil,
+P3.PER003_GunMaz AS UcretliIzin,
+(CASE WHEN P3.PER003_GunNo+P3.PER003_GunHt+P3.PER003_GunGn+P3.PER003_GunMaz+P3.PER003_GunUc+P3.PER003_GunHasta &gt; 31 AND
+P3.PER003_GunUc &gt; 0 AND P3.PER003_BordroTipi=2 
+THEN P3.PER003_GunUc/10 ELSE P3.PER003_GunUc END) AS YillikIzinGun,
+P3.PER003_SaUcretli AS YillikIzinSaat,P3.PER003_TutUcretli AS YillikIzinTutari,
+(CASE WHEN P3.PER003_GunNo+P3.PER003_GunHt+P3.PER003_GunGn+P3.PER003_GunMaz+P3.PER003_GunUc+P3.PER003_GunHasta &gt; 31 AND
+P3.PER003_GunHasta &gt; 0 AND P3.PER003_BordroTipi=2 
+THEN P3.PER003_GunHasta /10 ELSE P3.PER003_GunHasta  END) AS RaporsGun,P3.PER003_SaHasta AS RaporsSaat,P3.PER003_TutHasta AS RaporsTutar,
+0 AS UcretsizIzin,P3.PER003_SaDevamsizlik AS UcretsizIzinSaat,P3.PER003_TutDevamsizlik AS UcretsizIzinTutar,
+P3.PER003_SaNormal AS NormalCalismaSaat,P3.PER003_TutNormal AS NormalCalismaTutar,P3.PER003_SaHafta  AS HaftaTatiliSaat,
+P3.PER003_TutHafta AS HaftaTatiliTutar,P3.PER003_SaGenel AS GenelTatilSaat,P3.PER003_TutGenel AS GenelTatilTutar,
+P3.PER003_SaMazeret AS UcretliIzinSaat,P3.PER003_TutMazeret AS UcretliIzinTutar,P3.PER003_GunTatMesasi AS TatilMesaisi,
+P3.PER003_GunTatMesasi AS TatilMesaisiSaat,P3.PER003_TutTatMesasi AS TatilMesaisiTutar,0 AS FazlaMesai,
+P3.PER003_SaFazlaMesai1+P3.PER003_SaFazlaMesai2 AS FazlaMesaiSaat,
+P3.PER003_TutFazlaMesai1+P3.PER003_TutFazlaMesai2 AS FazlaMesaiTutar,P3.PER003_SaGeceMesaisi AS GeceMesaisi,
+P3.PER003_NetGeceMesaisi AS GeceMesaisiNet,P3.PER003_TutGeceMesaisi AS GeceMesaisiTutar,
+0 AS GeceVardiyasi,P3.PER003_SaGeceVardiyasi AS GeceVardiyasiSaat,
+P3.PER003_TutGeceVardiyasi AS GeceVardiyasiTutar,P3.PER003_GunDigerKazanc1 AS UcretliIzinGunSaat,P3.PER003_SaDigerKazanc1 AS UcretliIzinSaat1,
+P3.PER003_TutDigerKazanc1 AS UcretliIzinGunTutar,P3.PER003_GunDigerKazanc2 AS EgitimGun,P3.PER003_SaDigerKazanc2 AS EgitimSaat,
+P3.PER003_TutDigerKazanc2 AS EgitimTutar,P3.PER003_GunDigerKazanc3 AS RaporGunSaat,P3.PER003_SaDigerKazanc3 AS RaporSaat,
+P3.PER003_TutDigerKazanc3 AS RaporGunTutar,P3.PER003_Yemek AS YemekYardimi,P3.PER003_Prim AS PerformansPirimi,P3.PER003_Ikramiye AS Ikramiye,
+P3.PER003_Izin AS YillikIzinYardimi,P3.PER003_Yakacak AS YakacakYardimi,P3.PER003_Bayram AS BayramYardimi,P3.PER003_Cocuk AS CocukYardimi,
+P3.PER003_Tahsil AS TahsilYardimi,P3.PER003_Kasa AS KasaTazminati,P3.PER003_Ihbar AS IhbarTazminati,P3.PER003_KidemTazminati AS KidemTazminati,
+P3.PER003_Askerlik AS AskerlikYardimi,P3.PER003_Yardim1 AS IzinYardimi,P3.PER003_Yardim2 AS PostaBasiTazminati,ISNULL(P3.PER003_SagSigYarIsv,0) AS SagSigIsvPayi,
+P3.PER003_Yardim4 AS BenzinYardimi,P3.PER003_Yardim5 AS OdulHediye,P3.PER003_Yardim6 AS Harcirah,P3.PER003_Yol+PER003_Aile+P3.PER003_Giyim+
+PER003_Dogum+P3.PER003_Evlenme+P3.PER003_Olum+P3.PER003_OzelSigortaYardimi+P3.PER003_BireyselSigYard+P3.PER003_Yardim7+
+P3.PER003_Yardim8+P3.PER003_SGKYardimTutar AS DigerYardimlar,P3.PER003_SSKPrimi AS SgkPrimiIsciPayi,P3.PER003_ISGPrimi AS IssizlikPrimiIsciPayi,P3.PER003_GelirVergisi AS GelirVergisi,
+P3.PER003_DamgaVergisi AS DamgaVergisi,P3.PER003_NormalSSKMatrahi AS SgkMatrahi,P3.PER003_SSKIvHissesi AS SgkPrimiIsverenHissesi,
+P3.PER003_ISGIsvPrimi AS IsizlikPrimiIsverenHisessi,P3.PER003_TesvikTutari AS SgkTesvikTutar,P3.PER003_SSKIvHissesi+P3.PER003_TesvikTutari AS SgkOdenecekIsverenHisessi,
+P3.PER003_DamgaMatrahi AS DamgaVergisiMatrahi,P3.PER003_NetMatrah AS GelirVergisiMatrahi,P3.PER003_SakatlikIndirimi AS GelirVergisiIndirimi,
+ISNULL(P3.PER003_OzelSigYardIsc+P3.PER003_BireyselSigYardIsc+P3.PER003_SagSigYarIsc,0) AS EkIndirim,P3.PER003_NetMatrah+P3.PER003_DevGelVerMatrahi AS YillikGelirVergisiMatrahi,
+P3.PER003_GelirVergisi+P3.PER003_DevGelVerTutari AS YillikGelirVergisi,P3.PER003_SendikaAidati AS SendikaAidati,P3.PER003_IcraTaksidi AS Icra,
+P3.PER003_Ceza AS Ceza,P3.PER003_Avans+P3.PER003_IkramiyeAvansi+P3.PER003_IzinAvansi+P3.PER003_YakitAvansi+P3.PER003_BayramAvansi AS Avans,
+P3.PER003_TersBakiye AS TersBakiye,P3.PER003_OzelKesinti AS Avans2,P3.PER003_AsgGecimInd AS AsgariGecimIndirimi,
+P3.PER003_NormalKazanc+P3.PER003_EkKazanc+P3.PER003_SosyalYardim+P3.PER003_SGKYardimTutar AS NormalKazanc,
+P3.PER003_NetOdenen AS NetOdenen,P3.PER003_NetOdenen+PER003_AsgGecimInd AS ToplamOdenen,PER003_DigerKesinti4
+
+FROM PER003 AS P3
+INNER JOIN PER002 AS P2 ON P3.PER003_SicilKodu=P2.PER002_SicilKodu
+WHERE PER003_BordroAy=1 
+AND CONVERT(varchar(10),CONVERT(datetime,PER003_BordroTarihi-2),103)='11/02/2013'</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="BlSicil" DataSetColumn="BlSicil" />
+              <Mapping SourceColumn="AdSoyad" DataSetColumn="AdSoyad" />
+              <Mapping SourceColumn="Ucret" DataSetColumn="Ucret" />
+              <Mapping SourceColumn="GirisTarihi" DataSetColumn="GirisTarihi" />
+              <Mapping SourceColumn="TcNo" DataSetColumn="TcNo" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+              <Mapping SourceColumn="SGKNo" DataSetColumn="SGKNo" />
+              <Mapping SourceColumn="CocukAdedi" DataSetColumn="CocukAdedi" />
+              <Mapping SourceColumn="SgkGun" DataSetColumn="SgkGun" />
+              <Mapping SourceColumn="NormalCalisma" DataSetColumn="NormalCalisma" />
+              <Mapping SourceColumn="HaftaTatili" DataSetColumn="HaftaTatili" />
+              <Mapping SourceColumn="GenelTatil" DataSetColumn="GenelTatil" />
+              <Mapping SourceColumn="UcretliIzin" DataSetColumn="UcretliIzin" />
+              <Mapping SourceColumn="YillikIzinGun" DataSetColumn="YillikIzinGun" />
+              <Mapping SourceColumn="YillikIzinSaat" DataSetColumn="YillikIzinSaat" />
+              <Mapping SourceColumn="YillikIzinTutari" DataSetColumn="YillikIzinTutari" />
+              <Mapping SourceColumn="RaporsGun" DataSetColumn="RaporsGun" />
+              <Mapping SourceColumn="RaporsSaat" DataSetColumn="RaporsSaat" />
+              <Mapping SourceColumn="RaporsTutar" DataSetColumn="RaporsTutar" />
+              <Mapping SourceColumn="UcretsizIzin" DataSetColumn="UcretsizIzin" />
+              <Mapping SourceColumn="UcretsizIzinSaat" DataSetColumn="UcretsizIzinSaat" />
+              <Mapping SourceColumn="UcretsizIzinTutar" DataSetColumn="UcretsizIzinTutar" />
+              <Mapping SourceColumn="NormalCalismaSaat" DataSetColumn="NormalCalismaSaat" />
+              <Mapping SourceColumn="NormalCalismaTutar" DataSetColumn="NormalCalismaTutar" />
+              <Mapping SourceColumn="HaftaTatiliSaat" DataSetColumn="HaftaTatiliSaat" />
+              <Mapping SourceColumn="HaftaTatiliTutar" DataSetColumn="HaftaTatiliTutar" />
+              <Mapping SourceColumn="GenelTatilSaat" DataSetColumn="GenelTatilSaat" />
+              <Mapping SourceColumn="GenelTatilTutar" DataSetColumn="GenelTatilTutar" />
+              <Mapping SourceColumn="UcretliIzinSaat" DataSetColumn="UcretliIzinSaat" />
+              <Mapping SourceColumn="UcretliIzinTutar" DataSetColumn="UcretliIzinTutar" />
+              <Mapping SourceColumn="TatilMesaisi" DataSetColumn="TatilMesaisi" />
+              <Mapping SourceColumn="TatilMesaisiSaat" DataSetColumn="TatilMesaisiSaat" />
+              <Mapping SourceColumn="TatilMesaisiTutar" DataSetColumn="TatilMesaisiTutar" />
+              <Mapping SourceColumn="FazlaMesai" DataSetColumn="FazlaMesai" />
+              <Mapping SourceColumn="FazlaMesaiSaat" DataSetColumn="FazlaMesaiSaat" />
+              <Mapping SourceColumn="FazlaMesaiTutar" DataSetColumn="FazlaMesaiTutar" />
+              <Mapping SourceColumn="GeceVardiyasi" DataSetColumn="GeceVardiyasi" />
+              <Mapping SourceColumn="GeceVardiyasiSaat" DataSetColumn="GeceVardiyasiSaat" />
+              <Mapping SourceColumn="GeceVardiyasiTutar" DataSetColumn="GeceVardiyasiTutar" />
+              <Mapping SourceColumn="UcretliIzinGunSaat" DataSetColumn="UcretliIzinGunSaat" />
+              <Mapping SourceColumn="UcretliIzinSaat1" DataSetColumn="UcretliIzinSaat1" />
+              <Mapping SourceColumn="UcretliIzinGunTutar" DataSetColumn="UcretliIzinGunTutar" />
+              <Mapping SourceColumn="EgitimGun" DataSetColumn="EgitimGun" />
+              <Mapping SourceColumn="EgitimSaat" DataSetColumn="EgitimSaat" />
+              <Mapping SourceColumn="EgitimTutar" DataSetColumn="EgitimTutar" />
+              <Mapping SourceColumn="RaporGunSaat" DataSetColumn="RaporGunSaat" />
+              <Mapping SourceColumn="RaporSaat" DataSetColumn="RaporSaat" />
+              <Mapping SourceColumn="RaporGunTutar" DataSetColumn="RaporGunTutar" />
+              <Mapping SourceColumn="YemekYardimi" DataSetColumn="YemekYardimi" />
+              <Mapping SourceColumn="PerformansPirimi" DataSetColumn="PerformansPirimi" />
+              <Mapping SourceColumn="Ikramiye" DataSetColumn="Ikramiye" />
+              <Mapping SourceColumn="YillikIzinYardimi" DataSetColumn="YillikIzinYardimi" />
+              <Mapping SourceColumn="YakacakYardimi" DataSetColumn="YakacakYardimi" />
+              <Mapping SourceColumn="BayramYardimi" DataSetColumn="BayramYardimi" />
+              <Mapping SourceColumn="CocukYardimi" DataSetColumn="CocukYardimi" />
+              <Mapping SourceColumn="TahsilYardimi" DataSetColumn="TahsilYardimi" />
+              <Mapping SourceColumn="KasaTazminati" DataSetColumn="KasaTazminati" />
+              <Mapping SourceColumn="IhbarTazminati" DataSetColumn="IhbarTazminati" />
+              <Mapping SourceColumn="KidemTazminati" DataSetColumn="KidemTazminati" />
+              <Mapping SourceColumn="AskerlikYardimi" DataSetColumn="AskerlikYardimi" />
+              <Mapping SourceColumn="IzinYardimi" DataSetColumn="IzinYardimi" />
+              <Mapping SourceColumn="PostaBasiTazminati" DataSetColumn="PostaBasiTazminati" />
+              <Mapping SourceColumn="SagSigIsvPayi" DataSetColumn="SagSigIsvPayi" />
+              <Mapping SourceColumn="BenzinYardimi" DataSetColumn="BenzinYardimi" />
+              <Mapping SourceColumn="OdulHediye" DataSetColumn="OdulHediye" />
+              <Mapping SourceColumn="Harcirah" DataSetColumn="Harcirah" />
+              <Mapping SourceColumn="DigerYardimlar" DataSetColumn="DigerYardimlar" />
+              <Mapping SourceColumn="SgkPrimiIsciPayi" DataSetColumn="SgkPrimiIsciPayi" />
+              <Mapping SourceColumn="IssizlikPrimiIsciPayi" DataSetColumn="IssizlikPrimiIsciPayi" />
+              <Mapping SourceColumn="GelirVergisi" DataSetColumn="GelirVergisi" />
+              <Mapping SourceColumn="DamgaVergisi" DataSetColumn="DamgaVergisi" />
+              <Mapping SourceColumn="SgkMatrahi" DataSetColumn="SgkMatrahi" />
+              <Mapping SourceColumn="SgkPrimiIsverenHissesi" DataSetColumn="SgkPrimiIsverenHissesi" />
+              <Mapping SourceColumn="IsizlikPrimiIsverenHisessi" DataSetColumn="IsizlikPrimiIsverenHisessi" />
+              <Mapping SourceColumn="SgkTesvikTutar" DataSetColumn="SgkTesvikTutar" />
+              <Mapping SourceColumn="SgkOdenecekIsverenHisessi" DataSetColumn="SgkOdenecekIsverenHisessi" />
+              <Mapping SourceColumn="DamgaVergisiMatrahi" DataSetColumn="DamgaVergisiMatrahi" />
+              <Mapping SourceColumn="GelirVergisiMatrahi" DataSetColumn="GelirVergisiMatrahi" />
+              <Mapping SourceColumn="GelirVergisiIndirimi" DataSetColumn="GelirVergisiIndirimi" />
+              <Mapping SourceColumn="EkIndirim" DataSetColumn="EkIndirim" />
+              <Mapping SourceColumn="YillikGelirVergisiMatrahi" DataSetColumn="YillikGelirVergisiMatrahi" />
+              <Mapping SourceColumn="YillikGelirVergisi" DataSetColumn="YillikGelirVergisi" />
+              <Mapping SourceColumn="SendikaAidati" DataSetColumn="SendikaAidati" />
+              <Mapping SourceColumn="Icra" DataSetColumn="Icra" />
+              <Mapping SourceColumn="Ceza" DataSetColumn="Ceza" />
+              <Mapping SourceColumn="Avans" DataSetColumn="Avans" />
+              <Mapping SourceColumn="TersBakiye" DataSetColumn="TersBakiye" />
+              <Mapping SourceColumn="Avans2" DataSetColumn="Avans2" />
+              <Mapping SourceColumn="AsgariGecimIndirimi" DataSetColumn="AsgariGecimIndirimi" />
+              <Mapping SourceColumn="NormalKazanc" DataSetColumn="NormalKazanc" />
+              <Mapping SourceColumn="NetOdenen" DataSetColumn="NetOdenen" />
+              <Mapping SourceColumn="ToplamOdenen" DataSetColumn="ToplamOdenen" />
+              <Mapping SourceColumn="GeceMesaisi" DataSetColumn="GeceMesaisi" />
+              <Mapping SourceColumn="GeceMesaisiNet" DataSetColumn="GeceMesaisiNet" />
+              <Mapping SourceColumn="GeceMesaisiTutar" DataSetColumn="GeceMesaisiTutar" />
+              <Mapping SourceColumn="Sec" DataSetColumn="Sec" />
+              <Mapping SourceColumn="IscıMemur" DataSetColumn="IscıMemur" />
+              <Mapping SourceColumn="PER003_DigerKesinti4" DataSetColumn="PER003_DigerKesinti4" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="DbConn (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="BordroTarihleri1" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="BordroTarihleri1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="BordroTarihleri1">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT (SELECT PER006_ReferansAciklamasi 
+FROM PER006 WITH(NOLOCK) 
+WHERE PER006_ReferansTuru = 005 AND PER006_ReferansKodu=(SELECT PER002_GorevKodu FROM PER002
+WHERE PER002_SicilKodu=PER003_SicilKodu)) AS IscıMemur,(CAST('1' as bit)) AS 'Sec',PER003_BolumKodu+'/'+PER003_SicilKodu AS BlSicil,P2.PER002_Adi+' ' +P2.PER002_Soyadi AS AdSoyad,P3.PER003_Ucreti AS Ucret,
+CONVERT(varchar(10),CONVERT(datetime,P2.PER002_GirisTarihi-2),103) AS GirisTarihi,P2.PER002_MernisNo AS TcNo,P2.PER002_Eposta AS Email,
+P2.PER002_SSKSicilNo AS SGKNo,P2.PER002_CocukAdedi AS CocukAdedi,P3.PER003_NormalSSKGun AS SgkGun,P3.PER003_GunNo AS NormalCalisma,
+P3.PER003_GunHt AS HaftaTatili,P3.PER003_GunGn AS GenelTatil,
+P3.PER003_GunMaz AS UcretliIzin,
+(CASE WHEN P3.PER003_GunNo+P3.PER003_GunHt+P3.PER003_GunGn+P3.PER003_GunMaz+P3.PER003_GunUc+P3.PER003_GunHasta &gt; 31 AND
+P3.PER003_GunUc &gt; 0 AND P3.PER003_BordroTipi=2 
+THEN P3.PER003_GunUc/10 ELSE P3.PER003_GunUc END) AS YillikIzinGun,
+P3.PER003_SaUcretli AS YillikIzinSaat,P3.PER003_TutUcretli AS YillikIzinTutari,
+(CASE WHEN P3.PER003_GunNo+P3.PER003_GunHt+P3.PER003_GunGn+P3.PER003_GunMaz+P3.PER003_GunUc+P3.PER003_GunHasta &gt; 31 AND
+P3.PER003_GunHasta &gt; 0 AND P3.PER003_BordroTipi=2 
+THEN P3.PER003_GunHasta /10 ELSE P3.PER003_GunHasta  END) AS RaporsGun,P3.PER003_SaHasta AS RaporsSaat,P3.PER003_TutHasta AS RaporsTutar,
+0 AS UcretsizIzin,P3.PER003_SaDevamsizlik AS UcretsizIzinSaat,P3.PER003_TutDevamsizlik AS UcretsizIzinTutar,
+P3.PER003_SaNormal AS NormalCalismaSaat,P3.PER003_TutNormal AS NormalCalismaTutar,P3.PER003_SaHafta  AS HaftaTatiliSaat,
+P3.PER003_TutHafta AS HaftaTatiliTutar,P3.PER003_SaGenel AS GenelTatilSaat,P3.PER003_TutGenel AS GenelTatilTutar,
+P3.PER003_SaMazeret AS UcretliIzinSaat,P3.PER003_TutMazeret AS UcretliIzinTutar,P3.PER003_GunTatMesasi AS TatilMesaisi,
+P3.PER003_GunTatMesasi AS TatilMesaisiSaat,P3.PER003_TutTatMesasi AS TatilMesaisiTutar,0 AS FazlaMesai,
+P3.PER003_SaFazlaMesai1+P3.PER003_SaFazlaMesai2 AS FazlaMesaiSaat,
+P3.PER003_TutFazlaMesai1+P3.PER003_TutFazlaMesai2 AS FazlaMesaiTutar,P3.PER003_SaGeceMesaisi AS GeceMesaisi,
+P3.PER003_NetGeceMesaisi AS GeceMesaisiNet,P3.PER003_TutGeceMesaisi AS GeceMesaisiTutar,
+0 AS GeceVardiyasi,P3.PER003_SaGeceVardiyasi AS GeceVardiyasiSaat,
+P3.PER003_TutGeceVardiyasi AS GeceVardiyasiTutar,P3.PER003_GunDigerKazanc1 AS UcretliIzinGunSaat,P3.PER003_SaDigerKazanc1 AS UcretliIzinSaat1,
+P3.PER003_TutDigerKazanc1 AS UcretliIzinGunTutar,P3.PER003_GunDigerKazanc2 AS EgitimGun,P3.PER003_SaDigerKazanc2 AS EgitimSaat,
+P3.PER003_TutDigerKazanc2 AS EgitimTutar,P3.PER003_GunDigerKazanc3 AS RaporGunSaat,P3.PER003_SaDigerKazanc3 AS RaporSaat,
+P3.PER003_TutDigerKazanc3 AS RaporGunTutar,P3.PER003_Yemek AS YemekYardimi,P3.PER003_Prim AS PerformansPirimi,P3.PER003_Ikramiye AS Ikramiye,
+P3.PER003_Izin AS YillikIzinYardimi,P3.PER003_Yakacak AS YakacakYardimi,P3.PER003_Bayram AS BayramYardimi,P3.PER003_Cocuk AS CocukYardimi,
+P3.PER003_Tahsil AS TahsilYardimi,P3.PER003_Kasa AS KasaTazminati,P3.PER003_Ihbar AS IhbarTazminati,P3.PER003_KidemTazminati AS KidemTazminati,
+P3.PER003_Askerlik AS AskerlikYardimi,P3.PER003_Yardim1 AS IzinYardimi,P3.PER003_Yardim2 AS PostaBasiTazminati,ISNULL(P3.PER003_SagSigYarIsv,0) AS SagSigIsvPayi,
+P3.PER003_Yardim4 AS BenzinYardimi,P3.PER003_Yardim5 AS OdulHediye,P3.PER003_Yardim6 AS Harcirah,P3.PER003_Yol+PER003_Aile+P3.PER003_Giyim+
+PER003_Dogum+P3.PER003_Evlenme+P3.PER003_Olum+P3.PER003_OzelSigortaYardimi+P3.PER003_BireyselSigYard+P3.PER003_Yardim7+
+P3.PER003_Yardim8+P3.PER003_SGKYardimTutar AS DigerYardimlar,P3.PER003_SSKPrimi AS SgkPrimiIsciPayi,P3.PER003_ISGPrimi AS IssizlikPrimiIsciPayi,P3.PER003_GelirVergisi AS GelirVergisi,
+P3.PER003_DamgaVergisi AS DamgaVergisi,P3.PER003_NormalSSKMatrahi AS SgkMatrahi,P3.PER003_SSKIvHissesi AS SgkPrimiIsverenHissesi,
+P3.PER003_ISGIsvPrimi AS IsizlikPrimiIsverenHisessi,P3.PER003_TesvikTutari AS SgkTesvikTutar,P3.PER003_SSKIvHissesi+P3.PER003_TesvikTutari AS SgkOdenecekIsverenHisessi,
+P3.PER003_DamgaMatrahi AS DamgaVergisiMatrahi,P3.PER003_NetMatrah AS GelirVergisiMatrahi,P3.PER003_SakatlikIndirimi AS GelirVergisiIndirimi,
+ISNULL(P3.PER003_OzelSigYardIsc+P3.PER003_BireyselSigYardIsc+P3.PER003_SagSigYarIsc,0) AS EkIndirim,P3.PER003_NetMatrah+P3.PER003_DevGelVerMatrahi AS YillikGelirVergisiMatrahi,
+P3.PER003_GelirVergisi+P3.PER003_DevGelVerTutari AS YillikGelirVergisi,P3.PER003_SendikaAidati AS SendikaAidati,P3.PER003_IcraTaksidi AS Icra,
+P3.PER003_Ceza AS Ceza,P3.PER003_Avans+P3.PER003_IkramiyeAvansi+P3.PER003_IzinAvansi+P3.PER003_YakitAvansi+P3.PER003_BayramAvansi AS Avans,
+P3.PER003_TersBakiye AS TersBakiye,P3.PER003_OzelKesinti-PER003_DigerKesinti4 AS Avans2,P3.PER003_AsgGecimInd AS AsgariGecimIndirimi,
+P3.PER003_NormalKazanc+P3.PER003_EkKazanc+P3.PER003_SosyalYardim+P3.PER003_SGKYardimTutar AS NormalKazanc,
+P3.PER003_NetOdenen AS NetOdenen,P3.PER003_NetOdenen+PER003_AsgGecimInd AS ToplamOdenen,
+PER003_DigerKesinti4
+
+FROM PER003 AS P3
+INNER JOIN PER002 AS P2 ON P3.PER003_SicilKodu=P2.PER002_SicilKodu
+WHERE PER003_BordroAy=@BordroAy  AND PER003_IsyeriKodu=@IsyeriKodu
+AND PER003_BordroYil=@Yil AND PER003_BordroNo=@BordroNo AND PER003_BordroTipi=@BordroTipi
+
+ORDER BY PER003_BordroYil,PER003_BordroAy,PER003_BordroNo,PER003_IsyeriKodu,PER003_BolumKodu,PER003_SicilKodu,PER003_Row_ID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="BordroAy" ColumnName="PER003_BordroAy" DataSourceName="" DataTypeServer="smallint" DbType="Int32" Direction="Input" ParameterName="@BordroAy" Precision="0" ProviderType="Int" Scale="0" Size="2" SourceColumn="PER003_BordroAy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="IsyeriKodu" ColumnName="PER003_IsyeriKodu" DataSourceName="" DataTypeServer="nvarchar(3)" DbType="String" Direction="Input" ParameterName="@IsyeriKodu" Precision="0" ProviderType="NVarChar" Scale="0" Size="3" SourceColumn="PER003_IsyeriKodu" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Yil" ColumnName="PER003_BordroYil" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Yil" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="PER003_BordroYil" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="BordroNo" ColumnName="PER003_BordroNo" DataSourceName="" DataTypeServer="smallint" DbType="Int32" Direction="Input" ParameterName="@BordroNo" Precision="0" ProviderType="Int" Scale="0" Size="2" SourceColumn="PER003_BordroNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="BordroTipi" ColumnName="PER003_BordroTipi" DataSourceName="" DataTypeServer="tinyint" DbType="Int32" Direction="Input" ParameterName="@BordroTipi" Precision="0" ProviderType="Int" Scale="0" Size="1" SourceColumn="PER003_BordroTipi" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DbConn (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="BordroTarihleri2" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="BordroTarihleri2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="BordroTarihleri2">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT (SELECT PER006_ReferansAciklamasi 
+FROM PER006 WITH(NOLOCK) 
+WHERE PER006_ReferansTuru = 005 AND PER006_ReferansKodu=(SELECT PER002_GorevKodu FROM PER002
+WHERE PER002_SicilKodu=PER003_SicilKodu)) AS IscıMemur,(CAST('1' as bit)) AS 'Sec',PER003_BolumKodu+'/'+PER003_SicilKodu AS BlSicil,P2.PER002_Adi+' ' +P2.PER002_Soyadi AS AdSoyad,P3.PER003_Ucreti AS Ucret,
+CONVERT(varchar(10),CONVERT(datetime,P2.PER002_GirisTarihi-2),103) AS GirisTarihi,P2.PER002_MernisNo AS TcNo,P2.PER002_Eposta AS Email,
+P2.PER002_SSKSicilNo AS SGKNo,P2.PER002_CocukAdedi AS CocukAdedi,P3.PER003_NormalSSKGun AS SgkGun,P3.PER003_GunNo AS NormalCalisma,
+P3.PER003_GunHt AS HaftaTatili,P3.PER003_GunGn AS GenelTatil,
+P3.PER003_GunMaz AS UcretliIzin,
+(CASE WHEN P3.PER003_GunNo+P3.PER003_GunHt+P3.PER003_GunGn+P3.PER003_GunMaz+P3.PER003_GunUc+P3.PER003_GunHasta &gt; 31 AND
+P3.PER003_GunUc &gt; 0 AND P3.PER003_BordroTipi=2 
+THEN P3.PER003_GunUc/10 ELSE P3.PER003_GunUc END) AS YillikIzinGun,
+P3.PER003_SaUcretli AS YillikIzinSaat,P3.PER003_TutUcretli AS YillikIzinTutari,
+(CASE WHEN P3.PER003_GunNo+P3.PER003_GunHt+P3.PER003_GunGn+P3.PER003_GunMaz+P3.PER003_GunUc+P3.PER003_GunHasta &gt; 31 AND
+P3.PER003_GunHasta &gt; 0 AND P3.PER003_BordroTipi=2 
+THEN P3.PER003_GunHasta /10 ELSE P3.PER003_GunHasta  END) AS RaporsGun,P3.PER003_SaHasta AS RaporsSaat,P3.PER003_TutHasta AS RaporsTutar,
+0 AS UcretsizIzin,P3.PER003_SaDevamsizlik AS UcretsizIzinSaat,P3.PER003_TutDevamsizlik AS UcretsizIzinTutar,
+P3.PER003_SaNormal AS NormalCalismaSaat,P3.PER003_TutNormal AS NormalCalismaTutar,P3.PER003_SaHafta  AS HaftaTatiliSaat,
+P3.PER003_TutHafta AS HaftaTatiliTutar,P3.PER003_SaGenel AS GenelTatilSaat,P3.PER003_TutGenel AS GenelTatilTutar,
+P3.PER003_SaMazeret AS UcretliIzinSaat,P3.PER003_TutMazeret AS UcretliIzinTutar,P3.PER003_GunTatMesasi AS TatilMesaisi,
+P3.PER003_GunTatMesasi AS TatilMesaisiSaat,P3.PER003_TutTatMesasi AS TatilMesaisiTutar,0 AS FazlaMesai,
+P3.PER003_SaFazlaMesai1+P3.PER003_SaFazlaMesai2 AS FazlaMesaiSaat,
+P3.PER003_TutFazlaMesai1+P3.PER003_TutFazlaMesai2 AS FazlaMesaiTutar,0 AS GeceVardiyasi,P3.PER003_SaGeceMesaisi AS GeceMesaisi,
+P3.PER003_NetGeceMesaisi AS GeceMesaisiNet,P3.PER003_TutGeceMesaisi AS GeceMesaisiTutar,
+P3.PER003_SaGeceVardiyasi AS GeceVardiyasiSaat,
+P3.PER003_TutGeceVardiyasi AS GeceVardiyasiTutar,P3.PER003_GunDigerKazanc1 AS UcretliIzinGunSaat,P3.PER003_SaDigerKazanc1 AS UcretliIzinSaat1,
+P3.PER003_TutDigerKazanc1 AS UcretliIzinGunTutar,P3.PER003_GunDigerKazanc2 AS EgitimGun,P3.PER003_SaDigerKazanc2 AS EgitimSaat,
+P3.PER003_TutDigerKazanc2 AS EgitimTutar,P3.PER003_GunDigerKazanc3 AS RaporGunSaat,P3.PER003_SaDigerKazanc3 AS RaporSaat,
+P3.PER003_TutDigerKazanc3 AS RaporGunTutar,P3.PER003_Yemek AS YemekYardimi,P3.PER003_Prim AS PerformansPirimi,P3.PER003_Ikramiye AS Ikramiye,
+P3.PER003_Izin AS YillikIzinYardimi,P3.PER003_Yakacak AS YakacakYardimi,P3.PER003_Bayram AS BayramYardimi,P3.PER003_Cocuk AS CocukYardimi,
+P3.PER003_Tahsil AS TahsilYardimi,P3.PER003_Kasa AS KasaTazminati,P3.PER003_Ihbar AS IhbarTazminati,P3.PER003_KidemTazminati AS KidemTazminati,
+P3.PER003_Askerlik AS AskerlikYardimi,P3.PER003_Yardim1 AS IzinYardimi,P3.PER003_Yardim2 AS PostaBasiTazminati,ISNULL(P3.PER003_SagSigYarIsv,0) AS SagSigIsvPayi,
+P3.PER003_Yardim4 AS BenzinYardimi,P3.PER003_Yardim5 AS OdulHediye,P3.PER003_Yardim6 AS Harcirah,P3.PER003_Yol+PER003_Aile+P3.PER003_Giyim+
+PER003_Dogum+P3.PER003_Evlenme+P3.PER003_Olum+P3.PER003_OzelSigortaYardimi+P3.PER003_BireyselSigYard+P3.PER003_Yardim7+
+P3.PER003_Yardim8+P3.PER003_SGKYardimTutar AS DigerYardimlar,P3.PER003_SSKPrimi AS SgkPrimiIsciPayi,P3.PER003_ISGPrimi AS IssizlikPrimiIsciPayi,P3.PER003_GelirVergisi AS GelirVergisi,
+P3.PER003_DamgaVergisi AS DamgaVergisi,P3.PER003_NormalSSKMatrahi AS SgkMatrahi,P3.PER003_SSKIvHissesi AS SgkPrimiIsverenHissesi,
+P3.PER003_ISGIsvPrimi AS IsizlikPrimiIsverenHisessi,P3.PER003_TesvikTutari AS SgkTesvikTutar,P3.PER003_SSKIvHissesi+P3.PER003_TesvikTutari AS SgkOdenecekIsverenHisessi,
+P3.PER003_DamgaMatrahi AS DamgaVergisiMatrahi,P3.PER003_NetMatrah AS GelirVergisiMatrahi,P3.PER003_SakatlikIndirimi AS GelirVergisiIndirimi,
+ISNULL(P3.PER003_OzelSigYardIsc+P3.PER003_BireyselSigYardIsc+P3.PER003_SagSigYarIsc,0) AS EkIndirim,P3.PER003_NetMatrah+P3.PER003_DevGelVerMatrahi AS YillikGelirVergisiMatrahi,
+P3.PER003_GelirVergisi+P3.PER003_DevGelVerTutari AS YillikGelirVergisi,P3.PER003_SendikaAidati AS SendikaAidati,P3.PER003_IcraTaksidi AS Icra,
+P3.PER003_Ceza AS Ceza,P3.PER003_Avans+P3.PER003_IkramiyeAvansi+P3.PER003_IzinAvansi+P3.PER003_YakitAvansi+P3.PER003_BayramAvansi AS Avans,
+P3.PER003_TersBakiye AS TersBakiye,P3.PER003_OzelKesinti-PER003_DigerKesinti4 AS Avans2,P3.PER003_AsgGecimInd AS AsgariGecimIndirimi,
+P3.PER003_NormalKazanc+P3.PER003_EkKazanc+P3.PER003_SosyalYardim+P3.PER003_SGKYardimTutar AS NormalKazanc,
+P3.PER003_NetOdenen AS NetOdenen,P3.PER003_NetOdenen+PER003_AsgGecimInd AS ToplamOdenen,
+PER003_DigerKesinti4
+
+FROM PER003 AS P3
+INNER JOIN PER002 AS P2 ON P3.PER003_SicilKodu=P2.PER002_SicilKodu
+WHERE PER003_BordroAy=@BordroAy  AND PER003_IsyeriKodu=@IsyeriKodu
+AND PER003_BordroYil=@Yil AND PER003_BordroTipi=@BordroTipi
+
+ORDER BY PER003_BordroYil,PER003_BordroAy,PER003_BordroNo,PER003_IsyeriKodu,PER003_BolumKodu,PER003_SicilKodu,PER003_Row_ID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="BordroAy" ColumnName="PER003_BordroAy" DataSourceName="" DataTypeServer="smallint" DbType="Int32" Direction="Input" ParameterName="@BordroAy" Precision="0" ProviderType="Int" Scale="0" Size="2" SourceColumn="PER003_BordroAy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="IsyeriKodu" ColumnName="PER003_IsyeriKodu" DataSourceName="" DataTypeServer="nvarchar(3)" DbType="String" Direction="Input" ParameterName="@IsyeriKodu" Precision="0" ProviderType="NVarChar" Scale="0" Size="3" SourceColumn="PER003_IsyeriKodu" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Yil" ColumnName="PER003_BordroYil" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Yil" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="PER003_BordroYil" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="BordroTipi" ColumnName="PER003_BordroTipi" DataSourceName="" DataTypeServer="tinyint" DbType="Int32" Direction="Input" ParameterName="@BordroTipi" Precision="0" ProviderType="Int" Scale="0" Size="1" SourceColumn="PER003_BordroTipi" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EmailDurumuTableAdapter" GeneratorDataComponentClassName="EmailDurumuTableAdapter" Name="EmailDurumu" UserDataComponentName="EmailDurumuTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DbHata (Settings)" DbObjectName="MajorBordroKontrol.dbo.EmailDurumu" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="GonderilenEmailAdresleri" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="GonderilenEmailAdresleri" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GonderilenEmailAdresleri">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [EmailDurumu] ([AdSoyad], [TcNo], [EmailAdres], [Mesaj], [Tarih], [DosyaYolu]) VALUES (@AdSoyad, @TcNo, @EmailAdres, @Mesaj, @Tarih, @DosyaYolu)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@AdSoyad" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="AdSoyad" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@TcNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="TcNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@EmailAdres" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EmailAdres" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Mesaj" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Mesaj" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Tarih" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="Tarih" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@DosyaYolu" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="DosyaYolu" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT AdSoyad, TcNo, EmailAdres, Mesaj,Tarih,DosyaYolu, (CASE Durum
+WHEN 0 THEN 'Gönderilemedi'
+WHEN 1 THEN 'Gönderildi' END) AS Durum
+FROM EmailDurumu 
+ORDER BY EmailID DESC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Tarih" DataSetColumn="Tarih" />
+              <Mapping SourceColumn="AdSoyad" DataSetColumn="AdSoyad" />
+              <Mapping SourceColumn="TcNo" DataSetColumn="TcNo" />
+              <Mapping SourceColumn="EmailAdres" DataSetColumn="EmailAdres" />
+              <Mapping SourceColumn="Mesaj" DataSetColumn="Mesaj" />
+              <Mapping SourceColumn="DosyaYolu" DataSetColumn="DosyaYolu" />
+              <Mapping SourceColumn="Durum" DataSetColumn="Durum" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="DbHata (Settings)" DbObjectName="MajorBordroKontrol.dbo.EmailDurumu" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="EmailGonderimDurumKontrolu" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="EmailGonderimDurumKontrolu" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="EmailGonderimDurumKontrolu">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT AdSoyad, TcNo, EmailAdres, Mesaj,Tarih,DosyaYolu, (CASE Durum
+WHEN 0 THEN 'Gönderilemedi'
+WHEN 1 THEN 'Gönderildi' END) AS Durum
+FROM EmailDurumu 
+WHERE (Tarih BETWEEN @Tarih1 AND @Tarih2) AND (Durum = @Durum)
+ORDER BY EmailID DESC</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="Tarih1" ColumnName="Tarih" DataSourceName="MajorBordroKontrol.dbo.EmailDurumu" DataTypeServer="date" DbType="String" Direction="Input" ParameterName="@Tarih1" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Tarih" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Tarih2" ColumnName="Tarih" DataSourceName="MajorBordroKontrol.dbo.EmailDurumu" DataTypeServer="date" DbType="String" Direction="Input" ParameterName="@Tarih2" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Tarih" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Durum" ColumnName="(CASE Durum WHEN 0 THEN 'Gönderilemedi' WHEN 1 THEN 'Gönderildi' END)" DataSourceName="" DataTypeServer="bit" DbType="Int32" Direction="Input" ParameterName="@Durum" Precision="0" ProviderType="Int" Scale="0" Size="1" SourceColumn="Durum" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+          <DbSource ConnectionRef="DbHata (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GonderilemeyenEmailAdresleri" MethodsParameterType="CLR" Modifier="Public" Name="GonderilemeyenEmailAdresleri" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="GonderilemeyenEmailAdresleri">
+            <InsertCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>INSERT INTO EmailDurumu(AdSoyad, TcNo, EmailAdres, Mesaj, Tarih,DosyaYolu, Durum)
+VALUES (@AdSoyad,@TcNo,@Email,@Mesaj,@Tarih,@DosyaYolu,@Durum)</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="AdSoyad" ColumnName="AdSoyad" DataSourceName="MajorBordroKontrol.dbo.EmailDurumu" DataTypeServer="nvarchar(250)" DbType="String" Direction="Input" ParameterName="@AdSoyad" Precision="0" ProviderType="NVarChar" Scale="0" Size="250" SourceColumn="AdSoyad" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="TcNo" ColumnName="TcNo" DataSourceName="MajorBordroKontrol.dbo.EmailDurumu" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@TcNo" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="TcNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="Email" ColumnName="EmailAdres" DataSourceName="MajorBordroKontrol.dbo.EmailDurumu" DataTypeServer="nvarchar(250)" DbType="String" Direction="Input" ParameterName="@Email" Precision="0" ProviderType="NVarChar" Scale="0" Size="250" SourceColumn="EmailAdres" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="Mesaj" ColumnName="Mesaj" DataSourceName="MajorBordroKontrol.dbo.EmailDurumu" DataTypeServer="nvarchar(4000)" DbType="String" Direction="Input" ParameterName="@Mesaj" Precision="0" ProviderType="NVarChar" Scale="0" Size="4000" SourceColumn="Mesaj" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="Tarih" ColumnName="Tarih" DataSourceName="MajorBordroKontrol.dbo.EmailDurumu" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@Tarih" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="Tarih" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="DosyaYolu" ColumnName="DosyaYolu" DataSourceName="MajorBordroKontrol.dbo.EmailDurumu" DataTypeServer="nvarchar(500)" DbType="String" Direction="Input" ParameterName="@DosyaYolu" Precision="0" ProviderType="NVarChar" Scale="0" Size="500" SourceColumn="DosyaYolu" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="Durum" ColumnName="Durum" DataSourceName="MajorBordroKontrol.dbo.EmailDurumu" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@Durum" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="Durum" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </InsertCommand>
+          </DbSource>
+          <DbSource ConnectionRef="DbHata (Settings)" DbObjectName="MajorBordroKontrol.dbo.EmailDurumu" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="GonderilenEmailAdresleri" MethodsParameterType="CLR" Modifier="Public" Name="GonderilenEmailAdresleri" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="GonderilenEmailAdresleri">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT * FROM EmailDurumu WHERE Durum=1</CommandText>
+                <Parameters />
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="DbConn (Settings)" DbObjectName="YNS13245.YNS13245.PER002" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="BankaHesapBilgisi" MethodsParameterType="CLR" Modifier="Public" Name="BankaHesapBilgisi" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="BankaHesapBilgisi">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT PER002_BankaNo FROM PER002
+WHERE PER002_SicilKodu=@SicilNumarasi</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="SicilNumarasi" ColumnName="PER002_SicilKodu" DataSourceName="YNS13245.YNS13245.PER002" DataTypeServer="nvarchar(8)" DbType="String" Direction="Input" ParameterName="@SicilNumarasi" Precision="0" ProviderType="NVarChar" Scale="0" Size="8" SourceColumn="PER002_SicilKodu" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="DbConn (Settings)" DbObjectName="YNS13245.YNS13245.PER003" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="BorcTaksiti" MethodsParameterType="CLR" Modifier="Public" Name="BorcTaksiti" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="BorcTaksiti">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT PER003_DigerKesinti1 AS Borc FROM PER003
+WHERE PER003_BordroAy=@BordroAy AND PER003_BordroYil=@BordroYil
+AND PER003_SicilKodu=@Sicil AND PER003_BolumKodu=@Bolum  AND PER003_BordroNo=@BordroNo</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="BordroAy" ColumnName="PER003_BordroAy" DataSourceName="YNS13245.YNS13245.PER003" DataTypeServer="smallint" DbType="Int32" Direction="Input" ParameterName="@BordroAy" Precision="0" ProviderType="Int" Scale="0" Size="2" SourceColumn="PER003_BordroAy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="BordroYil" ColumnName="PER003_BordroYil" DataSourceName="YNS13245.YNS13245.PER003" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@BordroYil" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="PER003_BordroYil" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="Sicil" ColumnName="PER003_SicilKodu" DataSourceName="YNS13245.YNS13245.PER003" DataTypeServer="nvarchar(8)" DbType="String" Direction="Input" ParameterName="@Sicil" Precision="0" ProviderType="NVarChar" Scale="0" Size="8" SourceColumn="PER003_SicilKodu" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="Bolum" ColumnName="PER003_BolumKodu" DataSourceName="YNS13245.YNS13245.PER003" DataTypeServer="nvarchar(5)" DbType="String" Direction="Input" ParameterName="@Bolum" Precision="0" ProviderType="NVarChar" Scale="0" Size="5" SourceColumn="PER003_BolumKodu" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="BordroNo" ColumnName="PER003_BordroNo" DataSourceName="YNS13245.YNS13245.PER003" DataTypeServer="smallint" DbType="Int32" Direction="Input" ParameterName="@BordroNo" Precision="0" ProviderType="Int" Scale="0" Size="2" SourceColumn="PER003_BordroNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsBordrolar" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsBordrolar" msprop:Generator_UserDSName="dsBordrolar">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BordlariGetir" msprop:Generator_TableClassName="BordlariGetirDataTable" msprop:Generator_TableVarName="tableBordlariGetir" msprop:Generator_TablePropName="BordlariGetir" msprop:Generator_RowDeletingName="BordlariGetirRowDeleting" msprop:Generator_RowChangingName="BordlariGetirRowChanging" msprop:Generator_RowEvHandlerName="BordlariGetirRowChangeEventHandler" msprop:Generator_RowDeletedName="BordlariGetirRowDeleted" msprop:Generator_UserTableName="BordlariGetir" msprop:Generator_RowChangedName="BordlariGetirRowChanged" msprop:Generator_RowEvArgName="BordlariGetirRowChangeEvent" msprop:Generator_RowClassName="BordlariGetirRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BlSicil" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBlSicil" msprop:Generator_ColumnPropNameInRow="BlSicil" msprop:Generator_ColumnPropNameInTable="BlSicilColumn" msprop:Generator_UserColumnName="BlSicil" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AdSoyad" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAdSoyad" msprop:Generator_ColumnPropNameInRow="AdSoyad" msprop:Generator_ColumnPropNameInTable="AdSoyadColumn" msprop:Generator_UserColumnName="AdSoyad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="41" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ucret" msprop:Generator_ColumnVarNameInTable="columnUcret" msprop:Generator_ColumnPropNameInRow="Ucret" msprop:Generator_ColumnPropNameInTable="UcretColumn" msprop:Generator_UserColumnName="Ucret" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GirisTarihi" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnGirisTarihi" msprop:Generator_ColumnPropNameInRow="GirisTarihi" msprop:Generator_ColumnPropNameInTable="GirisTarihiColumn" msprop:Generator_UserColumnName="GirisTarihi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TcNo" msprop:Generator_ColumnVarNameInTable="columnTcNo" msprop:Generator_ColumnPropNameInRow="TcNo" msprop:Generator_ColumnPropNameInTable="TcNoColumn" msprop:Generator_UserColumnName="TcNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="64" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SGKNo" msprop:Generator_ColumnVarNameInTable="columnSGKNo" msprop:Generator_ColumnPropNameInRow="SGKNo" msprop:Generator_ColumnPropNameInTable="SGKNoColumn" msprop:Generator_UserColumnName="SGKNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CocukAdedi" msprop:Generator_ColumnVarNameInTable="columnCocukAdedi" msprop:Generator_ColumnPropNameInRow="CocukAdedi" msprop:Generator_ColumnPropNameInTable="CocukAdediColumn" msprop:Generator_UserColumnName="CocukAdedi" type="xs:short" minOccurs="0" />
+              <xs:element name="SgkGun" msprop:Generator_ColumnVarNameInTable="columnSgkGun" msprop:Generator_ColumnPropNameInRow="SgkGun" msprop:Generator_ColumnPropNameInTable="SgkGunColumn" msprop:Generator_UserColumnName="SgkGun" type="xs:short" minOccurs="0" />
+              <xs:element name="NormalCalisma" msprop:Generator_ColumnVarNameInTable="columnNormalCalisma" msprop:Generator_ColumnPropNameInRow="NormalCalisma" msprop:Generator_ColumnPropNameInTable="NormalCalismaColumn" msprop:Generator_UserColumnName="NormalCalisma" type="xs:short" minOccurs="0" />
+              <xs:element name="HaftaTatili" msprop:Generator_ColumnVarNameInTable="columnHaftaTatili" msprop:Generator_ColumnPropNameInRow="HaftaTatili" msprop:Generator_ColumnPropNameInTable="HaftaTatiliColumn" msprop:Generator_UserColumnName="HaftaTatili" type="xs:short" minOccurs="0" />
+              <xs:element name="GenelTatil" msprop:Generator_ColumnVarNameInTable="columnGenelTatil" msprop:Generator_ColumnPropNameInRow="GenelTatil" msprop:Generator_ColumnPropNameInTable="GenelTatilColumn" msprop:Generator_UserColumnName="GenelTatil" type="xs:short" minOccurs="0" />
+              <xs:element name="UcretliIzin" msprop:Generator_ColumnVarNameInTable="columnUcretliIzin" msprop:Generator_ColumnPropNameInRow="UcretliIzin" msprop:Generator_ColumnPropNameInTable="UcretliIzinColumn" msprop:Generator_UserColumnName="UcretliIzin" type="xs:short" minOccurs="0" />
+              <xs:element name="YillikIzinGun" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnYillikIzinGun" msprop:Generator_ColumnPropNameInRow="YillikIzinGun" msprop:Generator_ColumnPropNameInTable="YillikIzinGunColumn" msprop:Generator_UserColumnName="YillikIzinGun" type="xs:int" minOccurs="0" />
+              <xs:element name="YillikIzinSaat" msprop:Generator_ColumnVarNameInTable="columnYillikIzinSaat" msprop:Generator_ColumnPropNameInRow="YillikIzinSaat" msprop:Generator_ColumnPropNameInTable="YillikIzinSaatColumn" msprop:Generator_UserColumnName="YillikIzinSaat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="YillikIzinTutari" msprop:Generator_ColumnVarNameInTable="columnYillikIzinTutari" msprop:Generator_ColumnPropNameInRow="YillikIzinTutari" msprop:Generator_ColumnPropNameInTable="YillikIzinTutariColumn" msprop:Generator_UserColumnName="YillikIzinTutari" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RaporsGun" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRaporsGun" msprop:Generator_ColumnPropNameInRow="RaporsGun" msprop:Generator_ColumnPropNameInTable="RaporsGunColumn" msprop:Generator_UserColumnName="RaporsGun" type="xs:int" minOccurs="0" />
+              <xs:element name="RaporsSaat" msprop:Generator_ColumnVarNameInTable="columnRaporsSaat" msprop:Generator_ColumnPropNameInRow="RaporsSaat" msprop:Generator_ColumnPropNameInTable="RaporsSaatColumn" msprop:Generator_UserColumnName="RaporsSaat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RaporsTutar" msprop:Generator_ColumnVarNameInTable="columnRaporsTutar" msprop:Generator_ColumnPropNameInRow="RaporsTutar" msprop:Generator_ColumnPropNameInTable="RaporsTutarColumn" msprop:Generator_UserColumnName="RaporsTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="UcretsizIzin" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnUcretsizIzin" msprop:Generator_ColumnPropNameInRow="UcretsizIzin" msprop:Generator_ColumnPropNameInTable="UcretsizIzinColumn" msprop:Generator_UserColumnName="UcretsizIzin" type="xs:int" minOccurs="0" />
+              <xs:element name="UcretsizIzinSaat" msprop:Generator_ColumnVarNameInTable="columnUcretsizIzinSaat" msprop:Generator_ColumnPropNameInRow="UcretsizIzinSaat" msprop:Generator_ColumnPropNameInTable="UcretsizIzinSaatColumn" msprop:Generator_UserColumnName="UcretsizIzinSaat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="UcretsizIzinTutar" msprop:Generator_ColumnVarNameInTable="columnUcretsizIzinTutar" msprop:Generator_ColumnPropNameInRow="UcretsizIzinTutar" msprop:Generator_ColumnPropNameInTable="UcretsizIzinTutarColumn" msprop:Generator_UserColumnName="UcretsizIzinTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NormalCalismaSaat" msprop:Generator_ColumnVarNameInTable="columnNormalCalismaSaat" msprop:Generator_ColumnPropNameInRow="NormalCalismaSaat" msprop:Generator_ColumnPropNameInTable="NormalCalismaSaatColumn" msprop:Generator_UserColumnName="NormalCalismaSaat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NormalCalismaTutar" msprop:Generator_ColumnVarNameInTable="columnNormalCalismaTutar" msprop:Generator_ColumnPropNameInRow="NormalCalismaTutar" msprop:Generator_ColumnPropNameInTable="NormalCalismaTutarColumn" msprop:Generator_UserColumnName="NormalCalismaTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="HaftaTatiliSaat" msprop:Generator_ColumnVarNameInTable="columnHaftaTatiliSaat" msprop:Generator_ColumnPropNameInRow="HaftaTatiliSaat" msprop:Generator_ColumnPropNameInTable="HaftaTatiliSaatColumn" msprop:Generator_UserColumnName="HaftaTatiliSaat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="HaftaTatiliTutar" msprop:Generator_ColumnVarNameInTable="columnHaftaTatiliTutar" msprop:Generator_ColumnPropNameInRow="HaftaTatiliTutar" msprop:Generator_ColumnPropNameInTable="HaftaTatiliTutarColumn" msprop:Generator_UserColumnName="HaftaTatiliTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GenelTatilSaat" msprop:Generator_ColumnVarNameInTable="columnGenelTatilSaat" msprop:Generator_ColumnPropNameInRow="GenelTatilSaat" msprop:Generator_ColumnPropNameInTable="GenelTatilSaatColumn" msprop:Generator_UserColumnName="GenelTatilSaat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GenelTatilTutar" msprop:Generator_ColumnVarNameInTable="columnGenelTatilTutar" msprop:Generator_ColumnPropNameInRow="GenelTatilTutar" msprop:Generator_ColumnPropNameInTable="GenelTatilTutarColumn" msprop:Generator_UserColumnName="GenelTatilTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="UcretliIzinSaat" msprop:Generator_ColumnVarNameInTable="columnUcretliIzinSaat" msprop:Generator_ColumnPropNameInRow="UcretliIzinSaat" msprop:Generator_ColumnPropNameInTable="UcretliIzinSaatColumn" msprop:Generator_UserColumnName="UcretliIzinSaat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="UcretliIzinTutar" msprop:Generator_ColumnVarNameInTable="columnUcretliIzinTutar" msprop:Generator_ColumnPropNameInRow="UcretliIzinTutar" msprop:Generator_ColumnPropNameInTable="UcretliIzinTutarColumn" msprop:Generator_UserColumnName="UcretliIzinTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TatilMesaisi" msprop:Generator_ColumnVarNameInTable="columnTatilMesaisi" msprop:Generator_ColumnPropNameInRow="TatilMesaisi" msprop:Generator_ColumnPropNameInTable="TatilMesaisiColumn" msprop:Generator_UserColumnName="TatilMesaisi" type="xs:short" minOccurs="0" />
+              <xs:element name="TatilMesaisiSaat" msprop:Generator_ColumnVarNameInTable="columnTatilMesaisiSaat" msprop:Generator_ColumnPropNameInRow="TatilMesaisiSaat" msprop:Generator_ColumnPropNameInTable="TatilMesaisiSaatColumn" msprop:Generator_UserColumnName="TatilMesaisiSaat" type="xs:short" minOccurs="0" />
+              <xs:element name="TatilMesaisiTutar" msprop:Generator_ColumnVarNameInTable="columnTatilMesaisiTutar" msprop:Generator_ColumnPropNameInRow="TatilMesaisiTutar" msprop:Generator_ColumnPropNameInTable="TatilMesaisiTutarColumn" msprop:Generator_UserColumnName="TatilMesaisiTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FazlaMesai" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFazlaMesai" msprop:Generator_ColumnPropNameInRow="FazlaMesai" msprop:Generator_ColumnPropNameInTable="FazlaMesaiColumn" msprop:Generator_UserColumnName="FazlaMesai" type="xs:int" minOccurs="0" />
+              <xs:element name="FazlaMesaiSaat" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFazlaMesaiSaat" msprop:Generator_ColumnPropNameInRow="FazlaMesaiSaat" msprop:Generator_ColumnPropNameInTable="FazlaMesaiSaatColumn" msprop:Generator_UserColumnName="FazlaMesaiSaat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FazlaMesaiTutar" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFazlaMesaiTutar" msprop:Generator_ColumnPropNameInRow="FazlaMesaiTutar" msprop:Generator_ColumnPropNameInTable="FazlaMesaiTutarColumn" msprop:Generator_UserColumnName="FazlaMesaiTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GeceVardiyasi" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnGeceVardiyasi" msprop:Generator_ColumnPropNameInRow="GeceVardiyasi" msprop:Generator_ColumnPropNameInTable="GeceVardiyasiColumn" msprop:Generator_UserColumnName="GeceVardiyasi" type="xs:int" minOccurs="0" />
+              <xs:element name="GeceVardiyasiSaat" msprop:Generator_ColumnVarNameInTable="columnGeceVardiyasiSaat" msprop:Generator_ColumnPropNameInRow="GeceVardiyasiSaat" msprop:Generator_ColumnPropNameInTable="GeceVardiyasiSaatColumn" msprop:Generator_UserColumnName="GeceVardiyasiSaat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GeceVardiyasiTutar" msprop:Generator_ColumnVarNameInTable="columnGeceVardiyasiTutar" msprop:Generator_ColumnPropNameInRow="GeceVardiyasiTutar" msprop:Generator_ColumnPropNameInTable="GeceVardiyasiTutarColumn" msprop:Generator_UserColumnName="GeceVardiyasiTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="UcretliIzinGunSaat" msprop:Generator_ColumnVarNameInTable="columnUcretliIzinGunSaat" msprop:Generator_ColumnPropNameInRow="UcretliIzinGunSaat" msprop:Generator_ColumnPropNameInTable="UcretliIzinGunSaatColumn" msprop:Generator_UserColumnName="UcretliIzinGunSaat" type="xs:short" minOccurs="0" />
+              <xs:element name="UcretliIzinSaat1" msprop:Generator_ColumnVarNameInTable="columnUcretliIzinSaat1" msprop:Generator_ColumnPropNameInRow="UcretliIzinSaat1" msprop:Generator_ColumnPropNameInTable="UcretliIzinSaat1Column" msprop:Generator_UserColumnName="UcretliIzinSaat1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="UcretliIzinGunTutar" msprop:Generator_ColumnVarNameInTable="columnUcretliIzinGunTutar" msprop:Generator_ColumnPropNameInRow="UcretliIzinGunTutar" msprop:Generator_ColumnPropNameInTable="UcretliIzinGunTutarColumn" msprop:Generator_UserColumnName="UcretliIzinGunTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EgitimGun" msprop:Generator_ColumnVarNameInTable="columnEgitimGun" msprop:Generator_ColumnPropNameInRow="EgitimGun" msprop:Generator_ColumnPropNameInTable="EgitimGunColumn" msprop:Generator_UserColumnName="EgitimGun" type="xs:short" minOccurs="0" />
+              <xs:element name="EgitimSaat" msprop:Generator_ColumnVarNameInTable="columnEgitimSaat" msprop:Generator_ColumnPropNameInRow="EgitimSaat" msprop:Generator_ColumnPropNameInTable="EgitimSaatColumn" msprop:Generator_UserColumnName="EgitimSaat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EgitimTutar" msprop:Generator_ColumnVarNameInTable="columnEgitimTutar" msprop:Generator_ColumnPropNameInRow="EgitimTutar" msprop:Generator_ColumnPropNameInTable="EgitimTutarColumn" msprop:Generator_UserColumnName="EgitimTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RaporGunSaat" msprop:Generator_ColumnVarNameInTable="columnRaporGunSaat" msprop:Generator_ColumnPropNameInRow="RaporGunSaat" msprop:Generator_ColumnPropNameInTable="RaporGunSaatColumn" msprop:Generator_UserColumnName="RaporGunSaat" type="xs:short" minOccurs="0" />
+              <xs:element name="RaporSaat" msprop:Generator_ColumnVarNameInTable="columnRaporSaat" msprop:Generator_ColumnPropNameInRow="RaporSaat" msprop:Generator_ColumnPropNameInTable="RaporSaatColumn" msprop:Generator_UserColumnName="RaporSaat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RaporGunTutar" msprop:Generator_ColumnVarNameInTable="columnRaporGunTutar" msprop:Generator_ColumnPropNameInRow="RaporGunTutar" msprop:Generator_ColumnPropNameInTable="RaporGunTutarColumn" msprop:Generator_UserColumnName="RaporGunTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="YemekYardimi" msprop:Generator_ColumnVarNameInTable="columnYemekYardimi" msprop:Generator_ColumnPropNameInRow="YemekYardimi" msprop:Generator_ColumnPropNameInTable="YemekYardimiColumn" msprop:Generator_UserColumnName="YemekYardimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PerformansPirimi" msprop:Generator_ColumnVarNameInTable="columnPerformansPirimi" msprop:Generator_ColumnPropNameInRow="PerformansPirimi" msprop:Generator_ColumnPropNameInTable="PerformansPirimiColumn" msprop:Generator_UserColumnName="PerformansPirimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ikramiye" msprop:Generator_ColumnVarNameInTable="columnIkramiye" msprop:Generator_ColumnPropNameInRow="Ikramiye" msprop:Generator_ColumnPropNameInTable="IkramiyeColumn" msprop:Generator_UserColumnName="Ikramiye" type="xs:decimal" minOccurs="0" />
+              <xs:element name="YillikIzinYardimi" msprop:Generator_ColumnVarNameInTable="columnYillikIzinYardimi" msprop:Generator_ColumnPropNameInRow="YillikIzinYardimi" msprop:Generator_ColumnPropNameInTable="YillikIzinYardimiColumn" msprop:Generator_UserColumnName="YillikIzinYardimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="YakacakYardimi" msprop:Generator_ColumnVarNameInTable="columnYakacakYardimi" msprop:Generator_ColumnPropNameInRow="YakacakYardimi" msprop:Generator_ColumnPropNameInTable="YakacakYardimiColumn" msprop:Generator_UserColumnName="YakacakYardimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BayramYardimi" msprop:Generator_ColumnVarNameInTable="columnBayramYardimi" msprop:Generator_ColumnPropNameInRow="BayramYardimi" msprop:Generator_ColumnPropNameInTable="BayramYardimiColumn" msprop:Generator_UserColumnName="BayramYardimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CocukYardimi" msprop:Generator_ColumnVarNameInTable="columnCocukYardimi" msprop:Generator_ColumnPropNameInRow="CocukYardimi" msprop:Generator_ColumnPropNameInTable="CocukYardimiColumn" msprop:Generator_UserColumnName="CocukYardimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TahsilYardimi" msprop:Generator_ColumnVarNameInTable="columnTahsilYardimi" msprop:Generator_ColumnPropNameInRow="TahsilYardimi" msprop:Generator_ColumnPropNameInTable="TahsilYardimiColumn" msprop:Generator_UserColumnName="TahsilYardimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KasaTazminati" msprop:Generator_ColumnVarNameInTable="columnKasaTazminati" msprop:Generator_ColumnPropNameInRow="KasaTazminati" msprop:Generator_ColumnPropNameInTable="KasaTazminatiColumn" msprop:Generator_UserColumnName="KasaTazminati" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IhbarTazminati" msprop:Generator_ColumnVarNameInTable="columnIhbarTazminati" msprop:Generator_ColumnPropNameInRow="IhbarTazminati" msprop:Generator_ColumnPropNameInTable="IhbarTazminatiColumn" msprop:Generator_UserColumnName="IhbarTazminati" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KidemTazminati" msprop:Generator_ColumnVarNameInTable="columnKidemTazminati" msprop:Generator_ColumnPropNameInRow="KidemTazminati" msprop:Generator_ColumnPropNameInTable="KidemTazminatiColumn" msprop:Generator_UserColumnName="KidemTazminati" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AskerlikYardimi" msprop:Generator_ColumnVarNameInTable="columnAskerlikYardimi" msprop:Generator_ColumnPropNameInRow="AskerlikYardimi" msprop:Generator_ColumnPropNameInTable="AskerlikYardimiColumn" msprop:Generator_UserColumnName="AskerlikYardimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IzinYardimi" msprop:Generator_ColumnVarNameInTable="columnIzinYardimi" msprop:Generator_ColumnPropNameInRow="IzinYardimi" msprop:Generator_ColumnPropNameInTable="IzinYardimiColumn" msprop:Generator_UserColumnName="IzinYardimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PostaBasiTazminati" msprop:Generator_ColumnVarNameInTable="columnPostaBasiTazminati" msprop:Generator_ColumnPropNameInRow="PostaBasiTazminati" msprop:Generator_ColumnPropNameInTable="PostaBasiTazminatiColumn" msprop:Generator_UserColumnName="PostaBasiTazminati" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SagSigIsvPayi" msprop:Generator_ColumnVarNameInTable="columnSagSigIsvPayi" msprop:Generator_ColumnPropNameInRow="SagSigIsvPayi" msprop:Generator_ColumnPropNameInTable="SagSigIsvPayiColumn" msprop:Generator_UserColumnName="SagSigIsvPayi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BenzinYardimi" msprop:Generator_ColumnVarNameInTable="columnBenzinYardimi" msprop:Generator_ColumnPropNameInRow="BenzinYardimi" msprop:Generator_ColumnPropNameInTable="BenzinYardimiColumn" msprop:Generator_UserColumnName="BenzinYardimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="OdulHediye" msprop:Generator_ColumnVarNameInTable="columnOdulHediye" msprop:Generator_ColumnPropNameInRow="OdulHediye" msprop:Generator_ColumnPropNameInTable="OdulHediyeColumn" msprop:Generator_UserColumnName="OdulHediye" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Harcirah" msprop:Generator_ColumnVarNameInTable="columnHarcirah" msprop:Generator_ColumnPropNameInRow="Harcirah" msprop:Generator_ColumnPropNameInTable="HarcirahColumn" msprop:Generator_UserColumnName="Harcirah" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DigerYardimlar" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDigerYardimlar" msprop:Generator_ColumnPropNameInRow="DigerYardimlar" msprop:Generator_ColumnPropNameInTable="DigerYardimlarColumn" msprop:Generator_UserColumnName="DigerYardimlar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SgkPrimiIsciPayi" msprop:Generator_ColumnVarNameInTable="columnSgkPrimiIsciPayi" msprop:Generator_ColumnPropNameInRow="SgkPrimiIsciPayi" msprop:Generator_ColumnPropNameInTable="SgkPrimiIsciPayiColumn" msprop:Generator_UserColumnName="SgkPrimiIsciPayi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IssizlikPrimiIsciPayi" msprop:Generator_ColumnVarNameInTable="columnIssizlikPrimiIsciPayi" msprop:Generator_ColumnPropNameInRow="IssizlikPrimiIsciPayi" msprop:Generator_ColumnPropNameInTable="IssizlikPrimiIsciPayiColumn" msprop:Generator_UserColumnName="IssizlikPrimiIsciPayi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GelirVergisi" msprop:Generator_ColumnVarNameInTable="columnGelirVergisi" msprop:Generator_ColumnPropNameInRow="GelirVergisi" msprop:Generator_ColumnPropNameInTable="GelirVergisiColumn" msprop:Generator_UserColumnName="GelirVergisi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DamgaVergisi" msprop:Generator_ColumnVarNameInTable="columnDamgaVergisi" msprop:Generator_ColumnPropNameInRow="DamgaVergisi" msprop:Generator_ColumnPropNameInTable="DamgaVergisiColumn" msprop:Generator_UserColumnName="DamgaVergisi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SgkMatrahi" msprop:Generator_ColumnVarNameInTable="columnSgkMatrahi" msprop:Generator_ColumnPropNameInRow="SgkMatrahi" msprop:Generator_ColumnPropNameInTable="SgkMatrahiColumn" msprop:Generator_UserColumnName="SgkMatrahi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SgkPrimiIsverenHissesi" msprop:Generator_ColumnVarNameInTable="columnSgkPrimiIsverenHissesi" msprop:Generator_ColumnPropNameInRow="SgkPrimiIsverenHissesi" msprop:Generator_ColumnPropNameInTable="SgkPrimiIsverenHissesiColumn" msprop:Generator_UserColumnName="SgkPrimiIsverenHissesi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="IsizlikPrimiIsverenHisessi" msprop:Generator_ColumnVarNameInTable="columnIsizlikPrimiIsverenHisessi" msprop:Generator_ColumnPropNameInRow="IsizlikPrimiIsverenHisessi" msprop:Generator_ColumnPropNameInTable="IsizlikPrimiIsverenHisessiColumn" msprop:Generator_UserColumnName="IsizlikPrimiIsverenHisessi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SgkTesvikTutar" msprop:Generator_ColumnVarNameInTable="columnSgkTesvikTutar" msprop:Generator_ColumnPropNameInRow="SgkTesvikTutar" msprop:Generator_ColumnPropNameInTable="SgkTesvikTutarColumn" msprop:Generator_UserColumnName="SgkTesvikTutar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SgkOdenecekIsverenHisessi" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSgkOdenecekIsverenHisessi" msprop:Generator_ColumnPropNameInRow="SgkOdenecekIsverenHisessi" msprop:Generator_ColumnPropNameInTable="SgkOdenecekIsverenHisessiColumn" msprop:Generator_UserColumnName="SgkOdenecekIsverenHisessi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DamgaVergisiMatrahi" msprop:Generator_ColumnVarNameInTable="columnDamgaVergisiMatrahi" msprop:Generator_ColumnPropNameInRow="DamgaVergisiMatrahi" msprop:Generator_ColumnPropNameInTable="DamgaVergisiMatrahiColumn" msprop:Generator_UserColumnName="DamgaVergisiMatrahi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GelirVergisiMatrahi" msprop:Generator_ColumnVarNameInTable="columnGelirVergisiMatrahi" msprop:Generator_ColumnPropNameInRow="GelirVergisiMatrahi" msprop:Generator_ColumnPropNameInTable="GelirVergisiMatrahiColumn" msprop:Generator_UserColumnName="GelirVergisiMatrahi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GelirVergisiIndirimi" msprop:Generator_ColumnVarNameInTable="columnGelirVergisiIndirimi" msprop:Generator_ColumnPropNameInRow="GelirVergisiIndirimi" msprop:Generator_ColumnPropNameInTable="GelirVergisiIndirimiColumn" msprop:Generator_UserColumnName="GelirVergisiIndirimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EkIndirim" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEkIndirim" msprop:Generator_ColumnPropNameInRow="EkIndirim" msprop:Generator_ColumnPropNameInTable="EkIndirimColumn" msprop:Generator_UserColumnName="EkIndirim" type="xs:decimal" minOccurs="0" />
+              <xs:element name="YillikGelirVergisiMatrahi" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnYillikGelirVergisiMatrahi" msprop:Generator_ColumnPropNameInRow="YillikGelirVergisiMatrahi" msprop:Generator_ColumnPropNameInTable="YillikGelirVergisiMatrahiColumn" msprop:Generator_UserColumnName="YillikGelirVergisiMatrahi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="YillikGelirVergisi" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnYillikGelirVergisi" msprop:Generator_ColumnPropNameInRow="YillikGelirVergisi" msprop:Generator_ColumnPropNameInTable="YillikGelirVergisiColumn" msprop:Generator_UserColumnName="YillikGelirVergisi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SendikaAidati" msprop:Generator_ColumnVarNameInTable="columnSendikaAidati" msprop:Generator_ColumnPropNameInRow="SendikaAidati" msprop:Generator_ColumnPropNameInTable="SendikaAidatiColumn" msprop:Generator_UserColumnName="SendikaAidati" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Icra" msprop:Generator_ColumnVarNameInTable="columnIcra" msprop:Generator_ColumnPropNameInRow="Icra" msprop:Generator_ColumnPropNameInTable="IcraColumn" msprop:Generator_UserColumnName="Icra" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ceza" msprop:Generator_ColumnVarNameInTable="columnCeza" msprop:Generator_ColumnPropNameInRow="Ceza" msprop:Generator_ColumnPropNameInTable="CezaColumn" msprop:Generator_UserColumnName="Ceza" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Avans" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAvans" msprop:Generator_ColumnPropNameInRow="Avans" msprop:Generator_ColumnPropNameInTable="AvansColumn" msprop:Generator_UserColumnName="Avans" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TersBakiye" msprop:Generator_ColumnVarNameInTable="columnTersBakiye" msprop:Generator_ColumnPropNameInRow="TersBakiye" msprop:Generator_ColumnPropNameInTable="TersBakiyeColumn" msprop:Generator_UserColumnName="TersBakiye" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Avans2" msprop:Generator_ColumnVarNameInTable="columnAvans2" msprop:Generator_ColumnPropNameInRow="Avans2" msprop:Generator_ColumnPropNameInTable="Avans2Column" msprop:Generator_UserColumnName="Avans2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AsgariGecimIndirimi" msprop:Generator_ColumnVarNameInTable="columnAsgariGecimIndirimi" msprop:Generator_ColumnPropNameInRow="AsgariGecimIndirimi" msprop:Generator_ColumnPropNameInTable="AsgariGecimIndirimiColumn" msprop:Generator_UserColumnName="AsgariGecimIndirimi" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NormalKazanc" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNormalKazanc" msprop:Generator_ColumnPropNameInRow="NormalKazanc" msprop:Generator_ColumnPropNameInTable="NormalKazancColumn" msprop:Generator_UserColumnName="NormalKazanc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NetOdenen" msprop:Generator_ColumnVarNameInTable="columnNetOdenen" msprop:Generator_ColumnPropNameInRow="NetOdenen" msprop:Generator_ColumnPropNameInTable="NetOdenenColumn" msprop:Generator_UserColumnName="NetOdenen" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ToplamOdenen" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnToplamOdenen" msprop:Generator_ColumnPropNameInRow="ToplamOdenen" msprop:Generator_ColumnPropNameInTable="ToplamOdenenColumn" msprop:Generator_UserColumnName="ToplamOdenen" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GeceMesaisi" msprop:Generator_ColumnVarNameInTable="columnGeceMesaisi" msprop:Generator_ColumnPropNameInRow="GeceMesaisi" msprop:Generator_ColumnPropNameInTable="GeceMesaisiColumn" msprop:Generator_UserColumnName="GeceMesaisi" type="xs:decimal" default="0" minOccurs="0" />
+              <xs:element name="GeceMesaisiNet" msprop:Generator_ColumnVarNameInTable="columnGeceMesaisiNet" msprop:Generator_ColumnPropNameInRow="GeceMesaisiNet" msprop:Generator_ColumnPropNameInTable="GeceMesaisiNetColumn" msprop:Generator_UserColumnName="GeceMesaisiNet" type="xs:decimal" default="0" minOccurs="0" />
+              <xs:element name="GeceMesaisiTutar" msprop:Generator_ColumnVarNameInTable="columnGeceMesaisiTutar" msprop:Generator_ColumnPropNameInRow="GeceMesaisiTutar" msprop:Generator_ColumnPropNameInTable="GeceMesaisiTutarColumn" msprop:Generator_UserColumnName="GeceMesaisiTutar" type="xs:decimal" default="0" minOccurs="0" />
+              <xs:element name="Sec" msprop:Generator_ColumnVarNameInTable="columnSec" msprop:Generator_ColumnPropNameInRow="Sec" msprop:Generator_ColumnPropNameInTable="SecColumn" msprop:Generator_UserColumnName="Sec" type="xs:boolean" minOccurs="0" />
+              <xs:element name="IscıMemur" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnIscıMemur" msprop:Generator_ColumnPropNameInRow="IscıMemur" msprop:Generator_ColumnPropNameInTable="IscıMemurColumn" msprop:Generator_UserColumnName="IscıMemur" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PER003_DigerKesinti4" msprop:Generator_ColumnVarNameInTable="columnPER003_DigerKesinti4" msprop:Generator_ColumnPropNameInRow="PER003_DigerKesinti4" msprop:Generator_ColumnPropNameInTable="PER003_DigerKesinti4Column" msprop:Generator_UserColumnName="PER003_DigerKesinti4" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EmailDurumu" msprop:Generator_TableClassName="EmailDurumuDataTable" msprop:Generator_TableVarName="tableEmailDurumu" msprop:Generator_TablePropName="EmailDurumu" msprop:Generator_RowDeletingName="EmailDurumuRowDeleting" msprop:Generator_RowChangingName="EmailDurumuRowChanging" msprop:Generator_RowEvHandlerName="EmailDurumuRowChangeEventHandler" msprop:Generator_RowDeletedName="EmailDurumuRowDeleted" msprop:Generator_UserTableName="EmailDurumu" msprop:Generator_RowChangedName="EmailDurumuRowChanged" msprop:Generator_RowEvArgName="EmailDurumuRowChangeEvent" msprop:Generator_RowClassName="EmailDurumuRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Tarih" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTarih" msprop:Generator_ColumnPropNameInRow="Tarih" msprop:Generator_ColumnPropNameInTable="TarihColumn" msprop:Generator_UserColumnName="Tarih" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="AdSoyad" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAdSoyad" msprop:Generator_ColumnPropNameInRow="AdSoyad" msprop:Generator_ColumnPropNameInTable="AdSoyadColumn" msprop:Generator_UserColumnName="AdSoyad" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TcNo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTcNo" msprop:Generator_ColumnPropNameInRow="TcNo" msprop:Generator_ColumnPropNameInTable="TcNoColumn" msprop:Generator_UserColumnName="TcNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmailAdres" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmailAdres" msprop:Generator_ColumnPropNameInRow="EmailAdres" msprop:Generator_ColumnPropNameInTable="EmailAdresColumn" msprop:Generator_UserColumnName="EmailAdres" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Mesaj" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMesaj" msprop:Generator_ColumnPropNameInRow="Mesaj" msprop:Generator_ColumnPropNameInTable="MesajColumn" msprop:Generator_UserColumnName="Mesaj" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DosyaYolu" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDosyaYolu" msprop:Generator_ColumnPropNameInRow="DosyaYolu" msprop:Generator_ColumnPropNameInTable="DosyaYoluColumn" msprop:Generator_UserColumnName="DosyaYolu" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Durum" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDurum" msprop:Generator_ColumnPropNameInRow="Durum" msprop:Generator_ColumnPropNameInTable="DurumColumn" msprop:Generator_UserColumnName="Durum" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
